@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>حلويات ريمو | شغف المذاق</title>
+    
+    <!-- الخطوط -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <!-- أيقونات السوشيال ميديا -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              cream: {
+                  DEFAULT: '#F5EBE0', 
+                  dark: '#EADDCB'
+              },
+              brown: {
+                  light: '#C08B5C', 
+                  DEFAULT: '#A97142',
+                  dark: '#5C4033'   
+              },
+              pink: {
+                  DEFAULT: '#E5989B', 
+                  hover: '#D5888B'
+              }
+            },
+            fontFamily: {
+              headline: ["Cairo", "serif"],
+              body: ["Tajawal", "sans-serif"]
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'float-delayed': 'float 6s ease-in-out 3s infinite',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'scroll': 'scroll 30s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+              },
+              scroll: {
+                '0%': { transform: 'translateX(0)' },
+                '100%': { transform: 'translateX(-50%)' }
+              }
+            }
+          },
+        },
+      }
+    </script>
+    
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #F5EBE0; color: #5C4033; overflow-x: hidden; }
+        h1, h2, h3, h4, h5 { font-family: 'Cairo', sans-serif; }
+        
+        /* تأثيرات الظهور عند التمرير */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* تأثير الزجاج */
+        .glass {
+            background: rgba(245, 235, 224, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        /* إخفاء شريط التمرير للصور */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  
+            scrollbar-width: none;  
+        }
+    </style>
+</head>
+<body class="bg-cream selection:bg-pink selection:text-white">
+
+<!-- شريط التنقل (Navbar) -->
+<nav id="navbar" class="glass fixed w-full top-0 z-50 transition-all duration-300 shadow-sm">
+    <div class="flex flex-wrap justify-between items-center w-full px-6 md:px-12 py-4 max-w-screen-2xl mx-auto rtl">
+        
+        <div class="z-50 flex items-center justify-center">
+            <a href="#home" class="text-3xl font-extrabold text-brown-dark flex items-center gap-2 hover:text-pink transition-colors">
+                <span class="material-symbols-outlined text-pink text-4xl" data-icon="cake">cake</span>
+                حلويات ريمو
+            </a>
+        </div>
+
+        <button id="menu-btn" class="md:hidden z-50 text-brown-dark focus:outline-none">
+            <i class="fa-solid fa-bars text-2xl"></i>
+        </button>
+
+        <div id="menu-links" class="fixed inset-0 bg-cream/95 backdrop-blur-lg flex flex-col items-center justify-center gap-8 opacity-0 invisible translate-y-[-20px] transition-all duration-300 md:relative md:inset-auto md:bg-transparent md:flex-row md:opacity-100 md:visible md:translate-y-0 z-40">
+            <a class="text-xl md:text-base text-brown-dark hover:text-pink font-bold transition-colors" href="#home">الرئيسية</a>
+            <a class="text-xl md:text-base text-brown-dark hover:text-pink font-bold transition-colors" href="#about">من نحن</a>
+            <a class="text-xl md:text-base text-brown-dark hover:text-pink font-bold transition-colors" href="#categories">أصنافنا</a>
+            <a class="text-xl md:text-base text-brown-dark hover:text-pink font-bold transition-colors" href="#gallery">عدسة ريمو</a>
+            
+            <a href="#contact" class="md:hidden bg-pink hover:bg-pink-hover text-white px-8 py-3 rounded-full font-bold shadow-lg transition-transform hover:scale-105">تواصل معنا</a>
+        </div>
+
+        <a href="#contact" class="hidden md:block bg-pink hover:bg-pink-hover text-white px-8 py-2 rounded-full shadow-md hover:scale-105 duration-200 ease-in-out font-bold">
+            تواصل معنا
+        </a>
+    </div>
+</nav>
+
+<!-- قسم البداية (Hero Section) -->
+<header class="relative min-h-screen flex items-center justify-center overflow-hidden bg-cream" id="home">
+    <div class="absolute inset-0 z-0">
+        <img class="w-full h-full object-cover opacity-20" alt="background pattern" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"/>
+        <div class="absolute inset-0 bg-gradient-to-b from-cream/90 via-cream/60 to-cream"></div>
+    </div>
+    
+    <div class="absolute top-1/4 right-10 text-pink opacity-40 animate-float">
+        <i class="fa-solid fa-cookie-bite text-5xl"></i>
+    </div>
+    <div class="absolute bottom-1/4 left-10 text-brown-light opacity-30 animate-float-delayed">
+        <i class="fa-solid fa-ice-cream text-6xl"></i>
+    </div>
+
+    <div class="relative z-10 text-center px-6 max-w-4xl reveal active">
+        <div class="mb-6 inline-block py-2 px-6 border-2 border-brown-light text-brown-dark tracking-widest text-sm font-bold uppercase rounded-full bg-cream-dark/50 backdrop-blur-sm">
+            صُنع بحب وشغف
+        </div>
+
+        <h1 class="text-5xl md:text-7xl font-extrabold mb-6 text-brown-dark leading-tight drop-shadow-sm">
+            تذوق السعادة في <span class="text-pink">كل قطعة</span>
+        </h1>
+        <p class="text-xl md:text-2xl font-medium mb-10 text-brown leading-relaxed max-w-2xl mx-auto">
+            نقدم لكم تشكيلة فاخرة من الحلويات التي صُممت لتشارككم أجمل ذكرياتكم السعيدة.
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-4">
+            <a class="px-10 py-4 bg-pink text-white rounded-full font-bold hover:bg-pink-hover transition-all shadow-xl hover:shadow-pink/50 hover:-translate-y-1" href="#about">تعرف علينا</a>
+            <a class="px-10 py-4 border-2 border-brown-light text-brown-dark rounded-full font-bold hover:bg-brown-light hover:text-white transition-all" href="#gallery">شاهد إبداعاتنا</a>
+        </div>
+    </div>
+</header>
+
+<!-- قسم من نحن (About Us) -->
+<section class="py-24 bg-cream-dark relative" id="about">
+    <div class="container mx-auto px-6 md:px-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div class="order-2 md:order-1 relative reveal">
+                <div class="absolute -top-10 -right-10 w-64 h-64 bg-pink/20 rounded-full blur-3xl animate-pulse-slow"></div>
+                <img class="rounded-3xl relative z-10 shadow-2xl transition-all duration-700 hover:scale-[1.03] border-4 border-white/50" alt="chef making pastry" src="https://images.unsplash.com/photo-1556206079-747a7a424d3d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"/>
+            </div>
+            
+            <div class="order-1 md:order-2 space-y-6 reveal">
+                <h2 class="text-pink text-lg font-bold tracking-widest uppercase flex items-center gap-2">
+                    <i class="fa-solid fa-heart"></i> قصة ريمو
+                </h2>
+                <h3 class="text-4xl md:text-5xl font-bold text-brown-dark leading-tight">فن صناعة الحلويات الراقية</h3>
+                <p class="text-brown-light text-lg leading-relaxed font-medium">
+                    في حلويات ريمو، لا نصنع مجرد حلوى، بل نبتكر لوحات فنية قابلة للتذوق. بدأت رحلتنا من شغف عميق بدمج المكونات الأصيلة مع اللمسات العصرية لتقديم أطباق ترضي الذواقة.
+                </p>
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center gap-4 bg-cream p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-default">
+                        <div class="w-12 h-12 rounded-full bg-pink/20 text-pink flex items-center justify-center text-xl"><i class="fa-solid fa-check"></i></div>
+                        <span class="font-bold text-brown-dark">نستخدم أجود أنواع الشوكولاتة</span>
+                    </div>
+                    <div class="flex items-center gap-4 bg-cream p-4 rounded-xl shadow-sm hover:shadow-md transition-shadow cursor-default">
+                        <div class="w-12 h-12 rounded-full bg-pink/20 text-pink flex items-center justify-center text-xl"><i class="fa-solid fa-star"></i></div>
+                        <span class="font-bold text-brown-dark">لمسات فنية في كل تفصيلة</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم الأصناف (Categories) -->
+<section class="py-24 bg-cream" id="categories">
+    <div class="container mx-auto px-6 md:px-12">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl font-bold text-brown-dark mb-4">أصنافنا المميزة</h2>
+            <div class="w-20 h-1 bg-pink mx-auto rounded-full"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="group glass p-8 hover:bg-brown-light transition-all duration-500 rounded-3xl shadow-lg text-center reveal cursor-pointer overflow-hidden relative">
+                <img src="images/img1.jpg" class="w-32 h-32 mx-auto rounded-full object-cover border-4 border-cream shadow-md group-hover:scale-110 transition-transform duration-500 mb-6" alt="كيك ريم">
+                <h4 class="text-2xl font-bold text-brown-dark group-hover:text-white mb-3">كيك ريم</h4>
+                <p class="text-brown group-hover:text-cream-dark text-sm leading-relaxed">كيكة مميزة بتصميم خاص ونكهة غنية تذوب في الفم.</p>
+            </div>
+            
+            <div class="group glass p-8 hover:bg-brown-light transition-all duration-500 rounded-3xl shadow-xl text-center md:-translate-y-4 reveal cursor-pointer overflow-hidden relative border-2 border-pink/30">
+                <img src="images/img2.jpg" class="w-32 h-32 mx-auto rounded-full object-cover border-4 border-cream shadow-md group-hover:scale-110 transition-transform duration-500 mb-6" alt="دوبلا ويفر">
+                <h4 class="text-2xl font-bold text-brown-dark group-hover:text-white mb-3">دوبلا ويفر بالشوكولا</h4>
+                <p class="text-brown group-hover:text-cream-dark text-sm leading-relaxed">طبقات مقرمشة من الويفر تتخللها شوكولاتة فاخرة.</p>
+            </div>
+            
+            <div class="group glass p-8 hover:bg-brown-light transition-all duration-500 rounded-3xl shadow-lg text-center reveal cursor-pointer overflow-hidden relative">
+                <img src="images/img3.jpg" class="w-32 h-32 mx-auto rounded-full object-cover border-4 border-cream shadow-md group-hover:scale-110 transition-transform duration-500 mb-6" alt="ترافل">
+                <h4 class="text-2xl font-bold text-brown-dark group-hover:text-white mb-3">ترافل الشوكولا</h4>
+                <p class="text-brown group-hover:text-cream-dark text-sm leading-relaxed">كرات غنية من الشوكولاتة الذائبة، مغطاة بأفخر أنواع الكاكاو.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- قسم معرض الصور المتحرك (Carousel Gallery) -->
+<section class="py-24 bg-cream-dark overflow-hidden" id="gallery">
+    <div class="container mx-auto px-4 md:px-12">
+        <div class="text-center mb-12 reveal">
+            <h2 class="text-4xl font-bold text-brown-dark">عدسة ريمو</h2>
+            <p class="mt-3 text-brown-light font-medium">نستعرض لكم أشهى الإبداعات</p>
+        </div>
+    </div>
+    
+    <!-- مسار الصور المتحرك -->
+    <!-- نستخدم dir="ltr" لضمان حركة السلايدر السلسة بالـ CSS -->
+    <div class="relative w-full py-4" dir="ltr">
+        <!-- الظلال الجانبية لإعطاء تأثير تلاشي للصور -->
+        <div class="absolute inset-y-0 left-0 w-16 md:w-32 bg-gradient-to-r from-cream-dark to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute inset-y-0 right-0 w-16 md:w-32 bg-gradient-to-l from-cream-dark to-transparent z-10 pointer-events-none"></div>
+        
+        <div class="flex gap-4 md:gap-6 animate-scroll w-max hover:[animation-play-state:paused] px-4">
+            
+            <!-- المجموعة الأولى من الصور -->
+            <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            
+            <!-- تكرار نفس المجموعة لضمان استمرار الحركة بدون تقطيع (Infinite Loop) -->
+           <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            <img class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-3xl shadow-md border-4 border-cream" alt="dessert" src="images/img1.jpg"/>
+            
+        </div>
+    </div>
+</section>
+
+<!-- قسم التواصل (Contact) -->
+<section class="py-24 bg-brown-light text-cream relative overflow-hidden" id="contact">
+    <div class="absolute -top-20 -left-20 w-96 h-96 bg-brown text-opacity-10 rounded-full blur-3xl"></div>
+    
+    <div class="container mx-auto px-6 md:px-12 relative z-10 text-center reveal">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-cream">يسعدنا تواصلكم</h2>
+        <p class="text-cream-dark text-lg mb-12 max-w-2xl mx-auto">
+            تواصلوا معنا مباشرة عبر منصاتنا لطلب منتجاتنا أو لمتابعة أحدث إبداعاتنا في عالم الحلويات.
+        </p>
+        
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+            <a href="https://wa.me/967785699881" target="_blank" class="w-full md:w-auto flex items-center justify-center gap-4 bg-[#25D366] hover:bg-[#20b958] text-white px-8 py-5 rounded-2xl shadow-xl hover:-translate-y-2 transition-all duration-300 font-bold text-xl group">
+                <i class="fa-brands fa-whatsapp text-3xl group-hover:animate-bounce"></i>
+                <span>مراسلتنا عبر واتساب</span>
+            </a>
+            
+            <a href="https://www.instagram.com/sweetsreemo?jplx=MXA0YTNjMTMzMXNzag==" target="_blank" class="w-full md:w-auto flex items-center justify-center gap-4 bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] hover:opacity-90 text-white px-8 py-5 rounded-2xl shadow-xl hover:-translate-y-2 transition-all duration-300 font-bold text-xl group">
+                <i class="fa-brands fa-instagram text-3xl group-hover:scale-110 transition-transform"></i>
+                <span>تابعونا على إنستغرام</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- التذييل (Footer) -->
+<footer class="bg-brown-dark text-cream py-10">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        
+        <div class="text-2xl font-extrabold text-cream flex items-center gap-2">
+            <span class="material-symbols-outlined text-pink text-3xl" data-icon="cake">cake</span>
+            حلويات ريمو
+        </div>
+        
+        <div class="flex items-center gap-4">
+             <span class="font-bold text-cream-dark">تابعونا:</span>
+             <a href="https://www.instagram.com/sweetsreemo?jplx=MXA0YTNjMTMzMXNzag==" target="_blank" class="w-12 h-12 rounded-full bg-cream/10 flex items-center justify-center hover:bg-pink hover:text-white transition-all transform hover:scale-110 shadow-lg text-2xl">
+                 <i class="fa-brands fa-instagram"></i>
+             </a>
+        </div>
+        
+        <div class="text-sm text-cream/70 font-medium">
+            <p>© 2026 حلويات ريمو. جميع الحقوق محفوظة.</p>
+        </div>
+        
+    </div>
+</footer>
+
+<script>
+    const menuBtn = document.getElementById('menu-btn');
+    const menuLinks = document.getElementById('menu-links');
+    const icon = menuBtn.querySelector('i');
+
+    menuBtn.addEventListener('click', () => {
+        menuLinks.classList.toggle('opacity-0');
+        menuLinks.classList.toggle('invisible');
+        menuLinks.classList.toggle('translate-y-[-20px]');
+        menuLinks.classList.toggle('opacity-100');
+        menuLinks.classList.toggle('visible');
+        menuLinks.classList.toggle('translate-y-0');
+        
+        if(icon.classList.contains('fa-bars')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-xmark');
+        } else {
+            icon.classList.remove('fa-xmark');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    const mobileLinks = menuLinks.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth < 768) {
+                menuLinks.classList.add('opacity-0', 'invisible', 'translate-y-[-20px]');
+                menuLinks.classList.remove('opacity-100', 'visible', 'translate-y-0');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+    });
+
+    function reveal() {
+        var reveals = document.querySelectorAll(".reveal");
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 100;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add("active");
+            }
+        }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal(); 
+</script>
+
+</body>
+</html>
